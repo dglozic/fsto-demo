@@ -32,65 +32,6 @@ var express = require('express')
 	if (env)
 		nconf.file(env, './config/app-'+env+'.json');
 	nconf.file('./config/app.json');
-
-/**
- * Setting up auth boilerplate
- */
-/*
-	//Serialize and deserialize the profile
-	passport.serializeUser(function(user, done) {
-		done(null, user);
-	});
-	
-	passport.deserializeUser(function(obj, done) {
-		done(null, obj);
-	});
-*/
-	
-/*
-	
-	var UAA = nconf.get('auth').UAA;
-	
-	passport.use(new bluemix_auth.Strategy({
-		apiURL: UAA.apiUrl,
-	    clientID: UAA.client,
-	    clientSecret: UAA.secret,
-	    callbackURL: UAA.callbackUrl,
-	    profileURL: UAA.profileUrl
-	  },
-	  function(req, accessToken, refreshToken, profile, done) {
-	      return done(null, profile);
-	  }
-	));
-	
-	function ensureAuthenticated(req, res, next) {
-		  if (req.isAuthenticated() || !process.env.VCAP_SERVICES) { 
-		      return next(); 
-		  }
-		  res.redirect('/auth/bluemix');
-	}
-*/	
-	
-/**
- * Redis store options
- */
-	var ropts;
-
-	if (process.env.VCAP_SERVICES) {
-	    var env = JSON.parse(process.env.VCAP_SERVICES);
-	    var credentials = env['redis-2.6'][0].credentials;
-	    ropts = {
-	    	host: credentials.host,
-	    	port: credentials.port,
-	    	pass: credentials.password
-	    }
-	}
-	else {
-		ropts = {
-			host: "localhost",
-			port: 6379
-		}
-	}
 	
 /**
  * Setting up express
@@ -123,22 +64,8 @@ var express = require('express')
 	// Routes
 	app.get('/', routes.index);
 
-/*	
-	// Auth routes
-	app.get('/auth/bluemix', passport.authenticate('bluemix', { scope: 'openid' }));
-	app.get('/auth/bluemix/callback', 
-			  passport.authenticate('bluemix'),
-			  function(req, res) {
-		         res.redirect('/');
- 	});
-	app.get('/logout', function(req, res) {
-		req.logout();
-		res.redirect(302, UAA.logoutUrl);
-	});
-*/
-
 	//Start the server
 	
 	app.listen(app.get('port'), function(){
-	  console.log('Home express server '+process.pid+' listening on port ' + app.get('port'));
+	  console.log('Header express server '+process.pid+' listening on port ' + app.get('port'));
 	});

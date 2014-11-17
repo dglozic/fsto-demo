@@ -127,6 +127,7 @@ var express = require('express')
 
 	// Routes
 	app.get('/', routes.index);
+	app.post('/', routes.post);
 
 	// Auth routes
 	app.get('/auth/facebook', passport.authenticate('facebook', { faulureRedirect: '/', scope: ['public_profile', 'email'] }));
@@ -144,14 +145,12 @@ var express = require('express')
 	//Start the server
 	
 	var server = app.listen(app.get('port'), function(){
-	  console.log('Home express server '+process.pid+' listening on port ' + app.get('port'));
+	  console.log('Server Push express server '+process.pid+' listening on port ' + app.get('port'));
 	});
 
-	var io = require('socket.io')(server);	
+	var io = require('socket.io')(server);
+	
+	routes.io = io;
 
 	io.on('connection', function (socket) {
-	   socket.emit('news', { hello: 'world' });
-	   socket.on('my other event', function (data) {
-          console.log(data);
-       });
     });	
