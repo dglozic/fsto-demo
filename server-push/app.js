@@ -140,15 +140,14 @@ var express = require('express')
 		res.redirect(302, FacebookAuth.logoutRedirectUrl);
 	});
 	
-	// Start Socket.io
-	var server = require('http').Server(app);	
-	var io = require('socket.io')(server);	
 
 	//Start the server
 	
-	app.listen(app.get('port'), function(){
+	var server = app.listen(app.get('port'), function(){
 	  console.log('Home express server '+process.pid+' listening on port ' + app.get('port'));
 	});
+
+	var io = require('socket.io')(server);	
 
 	io.on('connection', function (socket) {
 	   socket.emit('news', { hello: 'world' });
