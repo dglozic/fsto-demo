@@ -1,0 +1,15 @@
+{
+	"config": {
+		"header": {
+			"url": "https://header-dev.ng.bluemix.net"
+		},
+        "projectsUrl": "https://dev-dev.ng.bluemix.net/projects/"
+	},
+	"auth": {
+		"UAA": {
+			"loginUrl": "https://dev-dev.ng.bluemix.net/auth/bluemix",
+			"callbackUrl": "https://dev-dev.ng.bluemix.net/auth/bluemix/callback",
+			"logoutUrl": "https://login.ng.bluemix.net/UAALoginServerWAR/logout.jsp?redirect=http://dev-dev.ng.bluemix.net"			
+		}
+	}
+}

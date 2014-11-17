@@ -1,0 +1,40 @@
+{
+	"config": {
+		"header": {
+			"homeUrl": "http://dev-dev.ng.bluemix.net",			
+			"sections": [
+			             {
+			            	 "id": "develop",
+			            	 "label": "Develop",
+			            	 "url":   "http://dev-dev.ng.bluemix.net"
+			             },	{ 	
+			            	 "id": "solutions",
+			            	 "label": "Solutions",
+			            	 "url":   "http://solutions-dev.ng.bluemix.net",
+			            	 "auth": "no"
+			             }, 	{
+			            	 "id": "dashboard",
+			            	 "label": "Dashboard",
+			            	 "url":   "http://ace.ng.bluemix.net",
+			            	 "auth": "yes"
+			             }, 	{
+			            	 "id": "catalog",
+			            	 "label": "Catalog",
+			            	 "url":   "http://catalog-dev.ng.bluemix.net"
+			             },	{
+			            	 "id": "pricing",
+			            	 "label": "Pricing",
+			            	 "url":   "http://ace.ng.bluemix.net/#/pricing/cloudOEPaneId=pricing"
+			             },	{
+			            	 "id": "docs",
+			            	 "label": "Docs",
+			            	 "url":  "http://www.ng.bluemix.net/docs/"
+			             },	{
+			            	 "id": "community",
+			            	 "label": "Community",
+			            	 "url":   "http://developer.ibm.com/bluemix/"
+			             }
+			             ]
+		}
+	}
+}

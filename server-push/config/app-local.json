@@ -1,0 +1,13 @@
+{
+	"config": {
+		"header": {
+			"url": "http://localhost:3900"
+		}
+	},
+	"auth": {
+		"Facebook": {
+			"callbackUrl": "http://localhost:3200/auth/facebook/callback",
+			"logoutRedirectUrl": "http://localhost:3200/"
+		}
+	}
+}

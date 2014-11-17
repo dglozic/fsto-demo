@@ -1,4 +1,4 @@
 fsto-demo
 =========
 
-Demo app for Full Stack Toronto Conference
+Demo app for the Full Stack Toronto Conference

@@ -1,0 +1,33 @@
+
+ <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">FSTO Demo</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            {#sections}
+               <li{@eq key=selection value="{id}"} class="active"{/eq}><a href="{url}">{label}</a></li>
+            {/sections}
+            {^user}<li id="fb-login"><a href="{loginUrl}">Sign In</a></li>{/user}
+            {?user}
+            <li id="profile-dropdown" class="dropdown">
+              <a id="profile-dropdown-toggle" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img id="profile-picture" src="https://graph.facebook.com/{user.id}/picture?type=square"><!-- <span class="caret"></span>--></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{user.link}">Profile</a></li>
+               <li class="divider"></li>                
+                <li><a href="{logoutUrl}">Sign Out</a></li>
+              </ul>
+            </li>
+           {/user}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>

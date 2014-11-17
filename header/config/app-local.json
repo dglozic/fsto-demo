@@ -1,0 +1,36 @@
+{
+	"config": {
+		"header": {
+			"homeUrl": "http://localhost:3000", 
+			"loginUrl": "http://localhost:3000/auth/facebook",
+			"logoutUrl": "http://localhost:3000/logout",
+			"sections": [
+				{
+					"id": "home",
+					"label": "Home",
+					"url":   "http://localhost:3000"
+				},	{ 	
+					"id": "isomorphic",
+					"label": "Isomorphic",
+					"url":   "http://localhost:3100"
+				}, 	{
+					"id": "server-push",
+					"label": "Server Push",
+					"url":   "http://localhost:3200"
+				}, 	{
+					"id": "backbone",
+					"label": "BackboneJS",
+					"url":   "http://localhost:3300"
+				}, 	{
+					"id": "angular",
+					"label": "AngularJS",
+					"url":   "http://localhost:3400"
+				}, 	{
+					"id": "about",
+					"label": "About",
+					"url":   "http://localhost:3000/about"
+				}
+			]
+		}
+	}
+}
