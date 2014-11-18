@@ -8,7 +8,7 @@
 	<!--  Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{headerUrl}/css/header.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/server-push/css/style.css">
   </head>
 
 <body>
@@ -34,10 +34,15 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
    <!-- Bootstrap JS -->   
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-   <script src="/socket.io/socket.io.js"></script>
-   {`
+   <script src="{ioOrigin}/socket.io/socket.io.js"></script>
+
    <script>
-      var socket = io.connect('http://localhost');
+   var origin = "{ioOrigin}";
+   {`
+      var socket = io.connect(origin);
+      socket.on('message', function (message) {
+    	 console.log("message arrived into the client"); 
+      });
       socket.on('build', function (build) {
           if (build.progress==0)
              _resetProgress();
@@ -68,7 +73,7 @@
       // private function
       function _handleButtonClick(evt) {
          var state = $("#playButton").data("state");
-         $.post("/", { action: state });
+         $.post("/server-push/", { action: state });
       }
    
       function _resetProgress() {

@@ -1,0 +1,13 @@
+{
+	"config": {
+		"header": {
+			"url": "http://fsto-header.mybluemix.net"
+		}
+	},
+	"auth": {
+		"Facebook": {
+			"callbackUrl": "http://fsto-demo.mybluemix.net/isomorphic/auth/facebook/callback",
+			"logoutRedirectUrl": "http://fsto-demo.mybluemix.net"
+		}
+	}
+}

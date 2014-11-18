@@ -1,40 +1,36 @@
 {
 	"config": {
 		"header": {
-			"homeUrl": "http://dev-dev.ng.bluemix.net",			
+			"homeUrl": "http://fsto-demo.mybluemix.net", 
+			"loginUrl": "http://fsto-demo.mybluemix.net/auth/facebook",
+			"logoutUrl": "http://fsto-demo.mybluemix.net/logout",
 			"sections": [
-			             {
-			            	 "id": "develop",
-			            	 "label": "Develop",
-			            	 "url":   "http://dev-dev.ng.bluemix.net"
-			             },	{ 	
-			            	 "id": "solutions",
-			            	 "label": "Solutions",
-			            	 "url":   "http://solutions-dev.ng.bluemix.net",
-			            	 "auth": "no"
-			             }, 	{
-			            	 "id": "dashboard",
-			            	 "label": "Dashboard",
-			            	 "url":   "http://ace.ng.bluemix.net",
-			            	 "auth": "yes"
-			             }, 	{
-			            	 "id": "catalog",
-			            	 "label": "Catalog",
-			            	 "url":   "http://catalog-dev.ng.bluemix.net"
-			             },	{
-			            	 "id": "pricing",
-			            	 "label": "Pricing",
-			            	 "url":   "http://ace.ng.bluemix.net/#/pricing/cloudOEPaneId=pricing"
-			             },	{
-			            	 "id": "docs",
-			            	 "label": "Docs",
-			            	 "url":  "http://www.ng.bluemix.net/docs/"
-			             },	{
-			            	 "id": "community",
-			            	 "label": "Community",
-			            	 "url":   "http://developer.ibm.com/bluemix/"
-			             }
-			             ]
+				{
+					"id": "home",
+					"label": "Home",
+					"url":   "http://fsto-demo.mybluemix.net/"
+				},	{ 	
+					"id": "isomorphic",
+					"label": "Isomorphic",
+					"url":   "http://fsto-demo.mybluemix.net/isomorphic/"
+				}, 	{
+					"id": "server-push",
+					"label": "Server Push",
+					"url":   "http://fsto-demo.mybluemix.net/server-push/"
+				}, 	{
+					"id": "backbone",
+					"label": "BackboneJS",
+					"url":   "http://fsto-demo.mybluemix.net/backbonejs"
+				}, 	{
+					"id": "angular",
+					"label": "AngularJS",
+					"url":   "http://fsto-demo.mybluemix.net/angularjs"
+				}, 	{
+					"id": "about",
+					"label": "About",
+					"url":   "http://fsto-demo.mybluemix.net/about"
+				}
+			]
 		}
 	}
 }

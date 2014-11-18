@@ -2,8 +2,7 @@
 	"config": {
 		"header": {
 			"url": "http://localhost:3900"
-		},
-		"ioOrigin": "http://localhost:3200"
+		}
 	},
 	"auth": {
 		"Facebook": {

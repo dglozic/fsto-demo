@@ -3,7 +3,7 @@
  */
 
 var express = require('express')
-  , server_push = require('./routes/server-push')
+  , routes = require('./routes')
   , dust = require('dustjs-linkedin')
   , helpers = require('dustjs-helpers')
   , cons = require('consolidate')
@@ -126,17 +126,17 @@ var express = require('express')
 	}	
 
 	// Routes
-	app.get('/server-push', server_push.get);
-	app.post('/server-push', server_push.post);
+	app.get('/', routes.index);
+	app.post('/', routes.post);
 
 	// Auth routes
-	app.get('/server-push/auth/facebook', passport.authenticate('facebook', { faulureRedirect: '/', scope: ['public_profile', 'email'] }));
-	app.get('/server-push/auth/facebook/callback', 
+	app.get('/auth/facebook', passport.authenticate('facebook', { faulureRedirect: '/', scope: ['public_profile', 'email'] }));
+	app.get('/auth/facebook/callback', 
 			  passport.authenticate('facebook'),
 			  function(req, res) {
-		         res.redirect('/server-push');
+		         res.redirect('/');
  	});
-	app.get('/server-push/logout', function(req, res) {
+	app.get('/logout', function(req, res) {
 		req.logout();
 		res.redirect(302, FacebookAuth.logoutRedirectUrl);
 	});
@@ -150,8 +150,7 @@ var express = require('express')
 
 	var io = require('socket.io')(server);
 	
-	server_push.io = io;
+	routes.io = io;
 
 	io.on('connection', function (socket) {
-		socket.emit('message', { my: 'data' });
     });	
