@@ -113,10 +113,10 @@ var express = require('express')
 	app.use(bodyParser.urlencoded({ extended: true }));
 	app.use(multer());
 	app.use(express.static(path.join(__dirname, 'public')));
-	app.use(session({ key: sessionConfig.key, 
-					secret: sessionConfig.secret, saveUninitialized: true, resave: true}));	
-	//app.use(session({ key: sessionConfig.key, store: new RedisStore(ropts), 
-	//				secret: sessionConfig.secret, saveUninitialized: true, resave: true}));
+	//app.use(session({ key: sessionConfig.key, 
+	//				secret: sessionConfig.secret, saveUninitialized: true, resave: true}));	
+	app.use(session({ key: sessionConfig.key, store: new RedisStore(ropts), 
+					secret: sessionConfig.secret, saveUninitialized: true, resave: true}));
 	app.use(passport.initialize());
 	app.use(passport.session());
 	
@@ -128,6 +128,7 @@ var express = require('express')
 	// Routes
 	app.get('/isomorphic', ensureAuthenticated, isomorphic.get);
 	app.post('/isomorphic', ensureAuthenticated, isomorphic.post);
+	app.delete('/isomorphic', ensureAuthenticated, isomorphic.delete);	
 
 	// Auth routes
 	app.get('/isomorphic/auth/facebook', passport.authenticate('facebook', { faulureRedirect: '/', scope: ['public_profile', 'email'] }));

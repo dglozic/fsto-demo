@@ -5,10 +5,18 @@ body {
 
 div.new {
 	width: 50%;
+	display: inline-block;
 }
 
 div.new textarea {
 	width: 100%;
+	display: inline-block;
+}
+
+div.delete {
+	display: inline-block;
+	vertical-align: top;
+	padding-left: 10px;
 }
 
 div.todos {

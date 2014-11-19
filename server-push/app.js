@@ -70,10 +70,10 @@ var express = require('express')
 	));
 	
 	function ensureAuthenticated(req, res, next) {
-		  if (req.isAuthenticated() || !process.env.VCAP_SERVICES) { 
+		  if (req.isAuthenticated()) { 
 		      return next(); 
 		  }
-		  res.redirect('/auth/facebook');
+		  res.redirect('/server-push/auth/facebook');
 	}
 	
 /**

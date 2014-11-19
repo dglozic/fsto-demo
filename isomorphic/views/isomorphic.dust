@@ -19,7 +19,10 @@
       <h2>Todos</h2>
       <div class="new">
          <textarea id="new-todo-text" placeholder="New todo">
-         </textarea> 
+         </textarea>
+      </div>
+      <div class="delete">
+         <button type="button" id="delete-all" class="btn btn-primary">Delete All</button> 
       </div>
       <div class="todos">
          {#todos}
@@ -43,8 +46,14 @@
       });
       
       socket.on('deleteAll', function (message) {
-  	     console.log("deleteAll arrived"); 
+    	  $('.todos').empty();
        });
+      
+      $('#delete-all').on('click', function(e) {
+    	  $.ajax({url: "/isomorphic/", type: "DELETE"}).done(function(msg) {
+    		  console.log(msg);
+    	  });
+      });
  
       $('#new-todo-text').keyup(function (e) {
     	  var code = (e.keyCode ? e.keyCode : e.which);
