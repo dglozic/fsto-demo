@@ -12,11 +12,11 @@
 				},	{ 	
 					"id": "isomorphic",
 					"label": "Isomorphic",
-					"url":   "http://localhost:3100"
+					"url":   "http://localhost:3100/isomorphic/"
 				}, 	{
 					"id": "server-push",
 					"label": "Server Push",
-					"url":   "http://localhost:3200"
+					"url":   "http://localhost:3200/server-push/"
 				}, 	{
 					"id": "backbone",
 					"label": "BackboneJS",

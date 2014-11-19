@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{title}</title>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1" >
+	<!--  Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{headerUrl}/css/header.css">
+    <link rel="stylesheet" href="/isomorphic/css/style.css">
+  </head>
+
+<body>
+   {header|s}
+   <div class="mainContent">
+      <h1>Isomorphic app</h1>
+      
+      <h2>Todos</h2>
+      <div class="new">
+         <textarea id="new-todo-text" placeholder="New todo">
+         </textarea> 
+      </div>
+      <div class="todos">
+         {#todos}
+            {>todo todo=./}
+         {/todos}
+      </div>
+
+   </div>
+   <!--  jQuery -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+   <!-- Bootstrap JS -->   
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+   <script src="{ioOrigin}/socket.io/socket.io.js"></script>
+
+   <script>
+   var origin = "{ioOrigin}";
+   {`
+      var socket = io.connect(origin);
+      socket.on('add', function (message) {
+ 	     console.log("add arrived"); 
+      });
+      
+      socket.on('deleteAll', function (message) {
+  	     console.log("deleteAll arrived"); 
+       });
+ 
+      $('#new-todo-text').keyup(function (e) {
+    	  var code = (e.keyCode ? e.keyCode : e.which);
+    	  if (code == 13) {
+    		  e.preventDefault();
+              $.post("/isomorphic/", { text: $('#new-todo-text').val() });
+    		  $('#new-todo-text').val('');
+    	  }
+      });
+   `}
+   </script>
+ </body>
+</html>

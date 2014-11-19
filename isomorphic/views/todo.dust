@@ -1,0 +1,9 @@
+<div class="todo">
+   <div class="todo-first-row">
+      <span class="todo-user">{userName}</span>
+      <span class="todo-when">&nbsp;-&nbsp;3 min ago</span>
+   </div>
+   <div class="todo-second-row">
+      <span class="todo-text">{text}</span>
+   </div>
+</div>

@@ -1,0 +1,31 @@
+body {
+   margin: 0px 10px 0px 10px;
+   padding-top: 50px;
+}
+
+div.new {
+	width: 50%;
+}
+
+div.new textarea {
+	width: 100%;
+}
+
+div.todos {
+	border: 1px solid #e1e8ed;
+	border-bottom: 0px;
+	width: 50%;
+}
+
+div.todo {
+	border-bottom: 1px solid #e1e8ed;
+	padding: 5px;
+}
+
+div.todo-first-row span.todo-user {
+	font-weight: bold;
+}
+
+div.todo-first-row span.todo-when {
+	color: #8899a6;
+}

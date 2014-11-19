@@ -2,12 +2,13 @@
 	"config": {
 		"header": {
 			"url": "http://localhost:3900"
-		}
+		},
+		"ioOrigin": "http://localhost:3100"		
 	},
 	"auth": {
 		"Facebook": {
-			"callbackUrl": "http://localhost:3200/auth/facebook/callback",
-			"logoutRedirectUrl": "http://localhost:3200/"
+			"callbackUrl": "http://localhost:3100/isomorphic/auth/facebook/callback",
+			"logoutRedirectUrl": "http://localhost:3100/"
 		}
 	}
 }

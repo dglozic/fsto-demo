@@ -3,7 +3,7 @@
  */
 
 var express = require('express')
-  , routes = require('./routes')
+  , isomorphic = require('./routes/isomorphic')
   , dust = require('dustjs-linkedin')
   , helpers = require('dustjs-helpers')
   , cons = require('consolidate')
@@ -70,10 +70,10 @@ var express = require('express')
 	));
 	
 	function ensureAuthenticated(req, res, next) {
-		  if (req.isAuthenticated() || !process.env.VCAP_SERVICES) { 
+		  if (req.isAuthenticated()) { 
 		      return next(); 
 		  }
-		  res.redirect('/auth/facebook');
+		  res.redirect('/isomorphic/auth/facebook');
 	}
 	
 /**
@@ -113,44 +113,44 @@ var express = require('express')
 	app.use(bodyParser.urlencoded({ extended: true }));
 	app.use(multer());
 	app.use(express.static(path.join(__dirname, 'public')));
-	//app.use(session({ key: sessionConfig.key, 
-	//				secret: sessionConfig.secret, saveUninitialized: true, resave: true}));	
-	app.use(session({ key: sessionConfig.key, store: new RedisStore(ropts), 
-					secret: sessionConfig.secret, saveUninitialized: true, resave: true}));
+	app.use(session({ key: sessionConfig.key, 
+					secret: sessionConfig.secret, saveUninitialized: true, resave: true}));	
+	//app.use(session({ key: sessionConfig.key, store: new RedisStore(ropts), 
+	//				secret: sessionConfig.secret, saveUninitialized: true, resave: true}));
 	app.use(passport.initialize());
 	app.use(passport.session());
 	
     // development only
 	if ('development' == env) {
 	  app.use(errorHandler());
-	}	
+	}
 
 	// Routes
-	app.get('/', routes.index);
-	app.post('/', routes.post);
+	app.get('/isomorphic', ensureAuthenticated, isomorphic.get);
+	app.post('/isomorphic', ensureAuthenticated, isomorphic.post);
 
 	// Auth routes
-	app.get('/auth/facebook', passport.authenticate('facebook', { faulureRedirect: '/', scope: ['public_profile', 'email'] }));
-	app.get('/auth/facebook/callback', 
+	app.get('/isomorphic/auth/facebook', passport.authenticate('facebook', { faulureRedirect: '/', scope: ['public_profile', 'email'] }));
+	app.get('/isomorphic/auth/facebook/callback', 
 			  passport.authenticate('facebook'),
 			  function(req, res) {
-		         res.redirect('/');
+		         res.redirect('/isomorphic/');
  	});
 	app.get('/logout', function(req, res) {
 		req.logout();
 		res.redirect(302, FacebookAuth.logoutRedirectUrl);
 	});
-	
+
 
 	//Start the server
 	
 	var server = app.listen(app.get('port'), function(){
-	  console.log('Server Push express server '+process.pid+' listening on port ' + app.get('port'));
+	  console.log('Isomorphic express server '+process.pid+' listening on port ' + app.get('port'));
 	});
 
 	var io = require('socket.io')(server);
 	
-	routes.io = io;
+	isomorphic.io = io;
 
 	io.on('connection', function (socket) {
     });	
