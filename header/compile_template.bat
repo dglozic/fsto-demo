@@ -1,0 +1,1 @@
+call dustc -name=notifications views\notifications.dust public\js\notifications.js

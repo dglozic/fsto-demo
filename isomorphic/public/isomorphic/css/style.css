@@ -30,10 +30,27 @@ div.todo {
 	padding: 5px;
 }
 
+div.todo-image, div.todo-content {
+	display: inline-block;
+}
+
+div.todo-image {
+	padding: 5px;
+	vertical-align: top;
+}
+
+div.todo-image img {
+	width: 29px;
+	height: 29px;	
+	vertical-align: top;
+	border-radius: 3px;	
+}
+
 div.todo-first-row span.todo-user {
 	font-weight: bold;
 }
 
 div.todo-first-row span.todo-when {
+	padding-left: 5px;
 	color: #8899a6;
 }

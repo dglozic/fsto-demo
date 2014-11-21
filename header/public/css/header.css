@@ -13,9 +13,38 @@ a#profile-dropdown-toggle {
 	padding-bottom: 0px;
 }
 
+a#profile-dropdown-toggle, span#notification-badge, span#notification-image {
+	cursor: pointer;
+}
+
+span#notification-badge {
+	color: #d0d0d0;
+}
+
+span #notification-badge .hidden {
+	display: hidden;
+}
+
+a#notification-dropdown-toggle:hover span#notification-badge {
+	background: #aaa;
+	color: white;
+}
+
 img#profile-picture {
 	width: 29px;
 	height: 29px;
 	vertical-align: middle;
 	border-radius: 3px;
+}
+
+
+img.notification-image {
+	width: 29px;
+	height: 29px;
+	vertical-align: top;
+	border-radius: 3px;
+}
+
+div.notification-item {
+	max-width: 400px;
 }

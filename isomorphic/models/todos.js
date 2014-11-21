@@ -1,17 +1,6 @@
 var moment = require('moment');
 
-var todos = [
-             {
-            	 text: "Buy milk",
-             	 userName: "John Doe",
-            	 when: Date.now()
-             },
-             {
-            	 text: "Install winter tires",
-             	 userName: "John Doe",
-            	 when: Date.now()
-             },             
-];
+var models = [];
 
 exports.add = function (user, text, callback) {
 	var todo = {
@@ -20,23 +9,34 @@ exports.add = function (user, text, callback) {
 		userName: user.displayName,
 		when: Date.now()
 	};
-	todos.splice(0, 0, todo);
+	var model = models[user.id];
+	if (!model) {
+		model = { todos: [todo] };
+		models[user.id]=model;
+	}
+	else {
+		model.todos.splice(0, 0, todo);
+	}
 	callback(null, todo);
-}
+};
 
-exports.list = function() {
+exports.list = function(user, callback) {
+	var model = models[user.id];
+	var todos = model?model.todos:[];
 	var result = new Array(todos.length);
 	
 	for (i in todos) {
-		var todo = todos[i];
-		result[i] = { text: todo.text, userName: todo.userName, when: todo.when };
+		result[i] = JSON.parse(JSON.stringify(todos[i]));
 	}
-	return result;
-}
+	callback(null, result);
+};
 
-exports.deleteAll = function(callback) {
-	while(todos.length > 0) {
-	    todos.pop();
+exports.deleteAll = function(user, callback) {
+	var model = models[user.id];
+	if (model) {
+	   while(model.todos.length > 0) {
+	      model.todos.pop();
+	   }
 	}
 	callback(null);
-}
+};

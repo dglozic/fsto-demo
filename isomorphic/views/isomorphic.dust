@@ -35,31 +35,39 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
    <!-- Bootstrap JS -->   
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+   <script src="http://cdn.jsdelivr.net/dustjs/2.4.0/dust-core.js"></script>   
+   <script src="{headerUrl}/js/header.js"></script>
+   <script src="{headerUrl}/js/notifications.js"></script>   
    <script src="{ioOrigin}/socket.io/socket.io.js"></script>
+   <script src="/isomorphic/js/todo.js"></script>   
 
    <script>
    var origin = "{ioOrigin}";
+   {! This is messy, breaks encapsulation - should be untangled in a real system !}
+   initHeaderWebSockets(io, origin, "{notificationUrl}", "{oauth2Proxy}");
    {`
+
       var socket = io.connect(origin);
-      socket.on('add', function (message) {
- 	     console.log("add arrived"); 
+      socket.on('todos', function (message) {
+    	  if (message.type=='add') {
+    	     dust.render("todo", message.state, function(err, out) {
+     	        $(".todos").prepend(out);
+    	     });
+    	  }
+    	  else if (message.type=='delete') {
+        	  $('.todos').empty();
+    	  }
       });
       
-      socket.on('deleteAll', function (message) {
-    	  $('.todos').empty();
-       });
-      
       $('#delete-all').on('click', function(e) {
-    	  $.ajax({url: "/isomorphic/", type: "DELETE"}).done(function(msg) {
-    		  console.log(msg);
-    	  });
+    	  $.ajax({url: "/isomorphic/todos", type: "DELETE"});
       });
  
       $('#new-todo-text').keyup(function (e) {
     	  var code = (e.keyCode ? e.keyCode : e.which);
     	  if (code == 13) {
     		  e.preventDefault();
-              $.post("/isomorphic/", { text: $('#new-todo-text').val() });
+              $.post("/isomorphic/todos", { text: $('#new-todo-text').val() });
     		  $('#new-todo-text').val('');
     	  }
       });

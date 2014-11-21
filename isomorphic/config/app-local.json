@@ -1,9 +1,15 @@
 {
 	"config": {
 		"header": {
-			"url": "http://localhost:3900"
+			"url": "http://localhost:3900",
+			 "notificationUrl": "http://localhost:3900/notifications"
 		},
-		"ioOrigin": "http://localhost:3100"		
+		"ioOrigin": "http://localhost:3100",
+		"oauth2Proxy": "http://localhost:3100/isomorphic/oauth2-proxy",
+		"amqp": {
+			"host": "localhost",
+			"port": 5672
+		}
 	},
 	"auth": {
 		"Facebook": {

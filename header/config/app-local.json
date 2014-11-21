@@ -1,5 +1,10 @@
 {
 	"config": {
+		"ioOrigin": "http://localhost:3900",
+		"amqp": {
+			"host": "localhost",
+			"port": 5672
+		},
 		"header": {
 			"homeUrl": "http://localhost:3000", 
 			"loginUrl": "http://localhost:3000/auth/facebook",

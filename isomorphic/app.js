@@ -4,6 +4,8 @@
 
 var express = require('express')
   , isomorphic = require('./routes/isomorphic')
+  , auth_proxy = require('./lib/auth_proxy')
+  , todos = require('./routes/todos')
   , dust = require('dustjs-linkedin')
   , helpers = require('dustjs-helpers')
   , cons = require('consolidate')
@@ -19,6 +21,7 @@ var express = require('express')
   , passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy
   , RedisStore = require('connect-redis')(session)
+  , amqp = require('amqp')
   ;
 
 	var app = express();
@@ -70,11 +73,20 @@ var express = require('express')
 	));
 	
 	function ensureAuthenticated(req, res, next) {
-		  if (req.isAuthenticated()) { 
-		      return next(); 
-		  }
-		  res.redirect('/isomorphic/auth/facebook');
+	  if (req.isAuthenticated()) { 
+	      return next(); 
+	  }
+	  res.redirect('/isomorphic/auth/facebook');
 	}
+	
+	function preventUnauthenticated(req, res, next) {
+	   if (req.isAuthenticated()) {
+		   return next();
+	   }
+	   res.write(JSON.stringify({message: "This endpoint requires full authentication."}));
+	   res.send(401);
+	   res.end();
+	}	
 	
 /**
  * Redis store options
@@ -127,8 +139,12 @@ var express = require('express')
 
 	// Routes
 	app.get('/isomorphic', ensureAuthenticated, isomorphic.get);
-	app.post('/isomorphic', ensureAuthenticated, isomorphic.post);
-	app.delete('/isomorphic', ensureAuthenticated, isomorphic.delete);	
+	app.get('/isomorphic/todos', preventUnauthenticated, todos.get);	
+	app.post('/isomorphic/todos', preventUnauthenticated, todos.post);
+	app.delete('/isomorphic/todos', preventUnauthenticated, todos.delete);	
+	
+	// OAuth2 proxy route for the header to use, so that it can make per-user calls
+	app.all('/isomorphic/oauth2-proxy', auth_proxy.all);
 
 	// Auth routes
 	app.get('/isomorphic/auth/facebook', passport.authenticate('facebook', { faulureRedirect: '/', scope: ['public_profile', 'email'] }));
@@ -142,7 +158,6 @@ var express = require('express')
 		res.redirect(302, FacebookAuth.logoutRedirectUrl);
 	});
 
-
 	//Start the server
 	
 	var server = app.listen(app.get('port'), function(){
@@ -152,6 +167,33 @@ var express = require('express')
 	var io = require('socket.io')(server);
 	
 	isomorphic.io = io;
+	todos.io = io;
+	
+	//Connect to the AMQP broker
+	var mq;
+	if (process.env.VCAP_SERVICES) {
+	    var env = JSON.parse(process.env.VCAP_SERVICES);
+	    var credentials = env['rabbitmq-2.8'][0].credentials;
+	    mq = amqp.createConnection({ url: credentials.url });
+	
+	} else {
+	   var amqpConfig = nconf.get('config').amqp;
+	   mq = amqp.createConnection({ port: amqpConfig.port, host: amqpConfig.host});
+	}	
 
-	io.on('connection', function (socket) {
-    });	
+	todos.mq = mq;
+	
+	mq.on('ready', function() {
+		var exchange = mq.exchange('todos');
+		todos.exchange = exchange; 
+		mq.queue('isomorphic', function (q) {
+			q.bind(exchange, '#');
+			q.subscribe(function (message) {
+				io.sockets.emit('todos', JSON.parse(message.data));				
+			});
+		});
+	});
+	mq.on('error', function(err) {
+	    console.log("MQ error from isomorphic: "+err);
+	});
+	

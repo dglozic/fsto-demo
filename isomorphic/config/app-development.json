@@ -1,7 +1,8 @@
 {
 	"config": {
 		"header": {
-			"url": "http://fsto-header.mybluemix.net"
+			"url": "http://fsto-header.mybluemix.net",
+			"notificationUrl": "http://fsto-demo.mybluemix.net/header/notifications"			
 		},
 		"ioOrigin": "http://fsto-isomorphic.mybluemix.net"
 	},

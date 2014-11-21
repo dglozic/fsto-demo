@@ -1,0 +1,8 @@
+{#notifications}
+   <div class="notification-item">
+      <img class="notification-image" src="{imageUrl}">
+      <span class="notification-text">{text}</span>
+   </div>
+{:else}
+<span class="no-notifications">No new notifications.</span>
+{/notifications}

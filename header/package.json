@@ -23,6 +23,8 @@
     "consolidate": "0.10.0",
     "request": "2.40.0",
     "async": "0.9.0",
-    "lru-cache": "2.5.0"
+    "lru-cache": "2.5.0",
+    "socket.io": "~1.2",
+    "amqp": "0.2.0"        
   }
 }

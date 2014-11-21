@@ -19,12 +19,21 @@
             {^user}<li id="fb-login"><a href="{loginUrl}">Sign In</a></li>{/user}
             {?user}
             <li id="profile-dropdown" class="dropdown">
-              <a id="profile-dropdown-toggle" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img id="profile-picture" src="https://graph.facebook.com/{user.id}/picture?type=square"><!-- <span class="caret"></span>--></a>
+              <a id="profile-dropdown-toggle" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                 <img id="profile-picture" src="https://graph.facebook.com/{user.id}/picture?type=square">
+              </a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="{user.link}">Profile</a></li>
                <li class="divider"></li>                
                 <li><a href="{logoutUrl}">Sign Out</a></li>
               </ul>
+            </li>
+            <li id="notification-dropdown" class="dropdown">
+               <a id="notification-dropdown-toggle" data-container="body" 
+                  data-toggle="popover" data-placement="bottom">
+                  <span id="notification-image" class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+                  <span id="notification-badge" class="badge hidden"></span>               
+               </a>
             </li>
            {/user}
           </ul>
