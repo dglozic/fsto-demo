@@ -4,7 +4,8 @@
 			"url": "http://fsto-header.mybluemix.net",
 			"notificationUrl": "http://fsto-demo.mybluemix.net/header/notifications"			
 		},
-		"ioOrigin": "http://fsto-isomorphic.mybluemix.net"
+		"ioOrigin": "http://fsto-isomorphic.mybluemix.net",
+		"oauth2Proxy": "http://fsto-demo.mybluemix.net/isomorphic/oauth2-proxy"
 	},
 	"auth": {
 		"Facebook": {

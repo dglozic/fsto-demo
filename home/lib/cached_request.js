@@ -18,8 +18,8 @@ exports.get = function(url, user, callback) {
 	if (user)
 		key = user.id + '@' + key;
 	
-	//var cbody = cache.get(key);
-	var cbody=null;
+	var cbody = cache.get(key);
+	//var cbody=null;
 
     if (!cbody) {
     	var options = { url: url };
