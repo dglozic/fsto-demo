@@ -14,7 +14,9 @@
 <body>
    {header|s}
    <div class="mainContent">
-      <h1>Public Home</h1>
+      <h1>Welcome to FSTO Demo</h1>
+      <p>This page is the public landing page of the FSTO demo. Some pages require authentication
+      using your Facebook account.</p>
    </div>
    <!--  jQuery -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -25,7 +27,9 @@
    <script src="{headerUrl}/js/notifications.js"></script>   
    <script src="{headerUrl}/socket.io/socket.io.js"></script>
    <script>
-   initHeaderWebSockets(io, "{headerUrl}");
+   var origin = "{ioOrigin}";
+   {! This is messy, breaks encapsulation - should be untangled in a real system !}
+   initHeaderWebSockets(io, origin, "{notificationUrl}", "{oauth2Proxy}");   
    </script>   
  </body>
 </html>

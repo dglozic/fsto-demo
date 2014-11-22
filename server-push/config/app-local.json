@@ -1,9 +1,11 @@
 {
 	"config": {
 		"header": {
-			"url": "http://localhost:3900"
+			"url": "http://localhost:3900",
+			 "notificationUrl": "http://localhost:3900/notifications"			
 		},
-		"ioOrigin": "http://localhost:3200"
+		"ioOrigin": "http://localhost:3200",
+		"oauth2Proxy": "http://localhost:3200/server-push/oauth2-proxy"	
 	},
 	"auth": {
 		"Facebook": {

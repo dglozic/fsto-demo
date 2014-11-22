@@ -1,8 +1,11 @@
 {
 	"config": {
 		"header": {
-			"url": "http://fsto-header.mybluemix.net"
-		}
+			"url": "http://fsto-header.mybluemix.net",
+		    "notificationUrl": "http://fsto-header.mybluemix.net/notifications"				
+		},
+		"ioOrigin": "http://fsto-header.mybluemix.net",
+		"oauth2Proxy": "http://fsto-demo.mybluemix.net/oauth2-proxy"			
 	},
 	"auth": {
 		"Facebook": {

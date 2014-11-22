@@ -22,7 +22,7 @@ span#notification-badge {
 }
 
 span #notification-badge .hidden {
-	display: hidden;
+	visibility: hidden;
 }
 
 a#notification-dropdown-toggle:hover span#notification-badge {

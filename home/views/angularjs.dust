@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>{title}</title>
     <meta charset="utf-8">
@@ -7,28 +7,38 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" >
 	<!--  Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{headerUrl}/css/header.css">
+    <link rel="stylesheet" href="{headerUrl}/css/header.css">    
     <link rel="stylesheet" href="/css/style.css">
   </head>
 
 <body>
    {header|s}
    <div class="mainContent">
-      <h1>Welcome, {user.name.givenName}</h1>
-      <p>This page shows the version of the home page when users have been authenticated.</p>
+      <h1>AngularJS Example</h1>
+      <p>This page demonstrates how Angular can be served by one of the micro-services without the need&nbsp;
+      to implement the entire site using it.</p>
+         {`
+         <div ng-app>
+            <label>Name:</label>
+            <input type="text" ng-model="yourName" placeholder="Enter a name here">
+            <hr>
+            <h1>Hello {{yourName}}!</h1>
+         </div>
+         `}      
    </div>
    <!--  jQuery -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
    <!-- Bootstrap JS -->   
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-   <script src="http://cdn.jsdelivr.net/dustjs/2.4.0/dust-core.js"></script>      
+   <script src="http://cdn.jsdelivr.net/dustjs/2.4.0/dust-core.js"></script>   
    <script src="{headerUrl}/js/header.js"></script>
-   <script src="{headerUrl}/js/notifications.js"></script>
+   <script src="{headerUrl}/js/notifications.js"></script>   
    <script src="{headerUrl}/socket.io/socket.io.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"></script>   
    <script>
    var origin = "{ioOrigin}";
    {! This is messy, breaks encapsulation - should be untangled in a real system !}
    initHeaderWebSockets(io, origin, "{notificationUrl}", "{oauth2Proxy}");   
-   </script>        
-</body>
+   </script>   
+ </body>
 </html>

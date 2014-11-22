@@ -3,14 +3,18 @@ var crequest = require("../lib/cached_request");
 var nconf = require('nconf');
 
 exports.get = function(req, res) {
-	var headerUrl = nconf.get('config').header.url;
+	var config = nconf.get('config');
+	var headerUrl = config.header.url;
+	var notificationUrl = config.header.notificationUrl;	
 	var requestUrl = headerUrl+"?selection=server-push";
 	var context = process.env.VCAP_SERVICES?"/server-push":"";
-	var ioOrigin = nconf.get('config').ioOrigin;
+	var ioOrigin = config.ioOrigin;
+	var oauth2Proxy = config.oauth2Proxy;	
 
     crequest.get(requestUrl, req.user, function (err, body) {
         res.render('server-push', { title: 'Server Push - FSTO Demo', header: body, 
-        	   	headerUrl: headerUrl, user: req.user, context: context, ioOrigin: ioOrigin });
+        	   	headerUrl: headerUrl, user: req.user, context: context, 
+        	   	ioOrigin: ioOrigin, notificationUrl: notificationUrl, oauth2Proxy: oauth2Proxy });
      });
 };
 

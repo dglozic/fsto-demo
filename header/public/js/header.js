@@ -19,9 +19,20 @@ function initHeaderWebSockets(io, origin, notificationUrl, oauth2Proxy) {
 	   renderNotifications();
    });
    
+   socket.on('notifications', function(message) { 
+	   if (message.event=='delete') {
+		   headerNotifications = [];
+		   updateNotificationBadge();		   
+	   }
+   });
+   
    $('#notification-dropdown-toggle').on('shown.bs.popover', function () {
        renderNotifications();
    });
+   
+   $('#notification-dropdown-toggle').on('hidden.bs.popover', function () {
+	   resetNotifications();
+   });   
    
    function renderNotifications() {
       dust.render("notifications", { notifications: headerNotifications }, function(err, out) {
@@ -70,7 +81,12 @@ function initHeaderWebSockets(io, origin, notificationUrl, oauth2Proxy) {
 		   $('#notification-badge').removeClass('hidden');
 	   }
 	   else {
-		   $('#notification-badge').addClass('hidden');		   
+		   $('#notification-badge').addClass('hidden');	   
 	   }
+   }
+   
+   function resetNotifications() {
+	   var proxiedUrl = oauth2Proxy + "?url="+encodeURIComponent(notificationUrl);
+	   $.ajax({url: proxiedUrl, type: "DELETE"});
    }
 }

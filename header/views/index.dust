@@ -31,8 +31,8 @@
             <li id="notification-dropdown" class="dropdown">
                <a id="notification-dropdown-toggle" data-container="body" 
                   data-toggle="popover" data-placement="bottom">
-                  <span id="notification-image" class="glyphicon glyphicon-bell" aria-hidden="true"></span>
-                  <span id="notification-badge" class="badge hidden"></span>               
+                  <span id="notification-image" class="glyphicon glyphicon-bell"></span>
+                  <span id="notification-badge" class="badge"></span>               
                </a>
             </li>
            {/user}

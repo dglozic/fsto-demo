@@ -62,6 +62,7 @@ var express = require('express')
 	// Routes
 	app.get('/', routes.index);
 	app.get('/notifications', notifications.get);
+	app.delete('/notifications', notifications.delete);
 
 	//Start the server
 	

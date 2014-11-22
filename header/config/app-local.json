@@ -23,13 +23,9 @@
 					"label": "Server Push",
 					"url":   "http://localhost:3200/server-push/"
 				}, 	{
-					"id": "backbone",
-					"label": "BackboneJS",
-					"url":   "http://localhost:3300"
-				}, 	{
-					"id": "angular",
+					"id": "angularjs",
 					"label": "AngularJS",
-					"url":   "http://localhost:3400"
+					"url":   "http://localhost:3000/angularjs"
 				}, 	{
 					"id": "about",
 					"label": "About",

@@ -18,11 +18,7 @@
 					"label": "Server Push",
 					"url":   "http://fsto-demo.mybluemix.net/server-push/"
 				}, 	{
-					"id": "backbone",
-					"label": "BackboneJS",
-					"url":   "http://fsto-demo.mybluemix.net/backbonejs"
-				}, 	{
-					"id": "angular",
+					"id": "angularjs",
 					"label": "AngularJS",
 					"url":   "http://fsto-demo.mybluemix.net/angularjs"
 				}, 	{

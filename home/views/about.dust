@@ -15,10 +15,30 @@
    {header|s}
    <div class="mainContent">
       <h1>About Full Stack TO Demo</h1>
+      <p>This application demonstrates topics covered in the presentation, namely:
+      <ol>
+      <li>Node.js, Dust.js, jQuery, Bootstrap</li>
+      <li>Micro-services</li>
+      <li>Web Sockets</li>
+      <li>Message Broker (RabbitMQ)</li>
+      <li>UI Composition</li>
+      <li>Federated authentication using Redis Store session</li>
+      <li>Isomorphic app approach (partials rendered both on the server and the client)</li>
+      </ol>
+      <p>For more detail, visit <a href="http://dejanglozic.com">dejanglozic.com</a>.</p>
    </div>
    <!--  jQuery -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
    <!-- Bootstrap JS -->   
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+   <script src="http://cdn.jsdelivr.net/dustjs/2.4.0/dust-core.js"></script>   
+   <script src="{headerUrl}/js/header.js"></script>
+   <script src="{headerUrl}/js/notifications.js"></script>   
+   <script src="{headerUrl}/socket.io/socket.io.js"></script>
+   <script>
+   var origin = "{ioOrigin}";
+   {! This is messy, breaks encapsulation - should be untangled in a real system !}
+   initHeaderWebSockets(io, origin, "{notificationUrl}", "{oauth2Proxy}");   
+   </script>   
  </body>
 </html>

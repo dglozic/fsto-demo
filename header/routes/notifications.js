@@ -29,12 +29,14 @@ exports.delete = function(req, res) {
 	   }
 	   res.sendStatus(204);	
 	   res.end();
+	   exports.io.sockets.emit('notifications', { event: 'delete' });
 	});	
 }
 
 exports.init = function (io, mq) {
+	exports.io = io;
 	mq.on('ready', function() {
-		var exchange = mq.exchange('todos');
+		exchange = mq.exchange('todos');
 		mq.queue('header', function (q) {
 			q.bind(exchange, '#');
 			q.subscribe(function (message) {

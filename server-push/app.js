@@ -4,6 +4,7 @@
 
 var express = require('express')
   , server_push = require('./routes/server-push')
+  , auth_proxy = require('./lib/auth_proxy') 
   , dust = require('dustjs-linkedin')
   , helpers = require('dustjs-helpers')
   , cons = require('consolidate')
@@ -128,6 +129,9 @@ var express = require('express')
 	// Routes
 	app.get('/server-push', server_push.get);
 	app.post('/server-push', server_push.post);
+	
+	// OAuth2 proxy route for the header to use, so that it can make per-user calls
+	app.all('/server-push/oauth2-proxy', auth_proxy.all);	
 
 	// Auth routes
 	app.get('/server-push/auth/facebook', passport.authenticate('facebook', { faulureRedirect: '/', scope: ['public_profile', 'email'] }));
