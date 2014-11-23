@@ -1,0 +1,9 @@
+{
+	"port": "3300",
+	"config": {
+		"session": {
+			"key": "fsto_demo.sid",
+			"secret": "full-stack-rocks"
+		}
+	}
+}

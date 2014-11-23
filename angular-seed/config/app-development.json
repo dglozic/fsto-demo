@@ -4,12 +4,12 @@
 			"url": "http://fsto-header.mybluemix.net",
 			"notificationUrl": "http://fsto-header.mybluemix.net/notifications"			
 		},
-		"ioOrigin": "http://fsto-angular-seed.mybluemix.net",
-		"oauth2Proxy": "http://fsto-demo.mybluemix.net/angular-seed/oauth2-proxy"
+		"ioOrigin": "http://fsto-isomorphic.mybluemix.net",
+		"oauth2Proxy": "http://fsto-demo.mybluemix.net/isomorphic/oauth2-proxy"
 	},
 	"auth": {
 		"Facebook": {
-			"callbackUrl": "http://fsto-demo.mybluemix.net/angular-seed/auth/facebook/callback",
+			"callbackUrl": "http://fsto-demo.mybluemix.net/isomorphic/auth/facebook/callback",
 			"logoutRedirectUrl": "http://fsto-demo.mybluemix.net"
 		}
 	}

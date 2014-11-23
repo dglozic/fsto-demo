@@ -1,0 +1,20 @@
+{
+	"config": {
+		"header": {
+			"url": "http://localhost:3900",
+			 "notificationUrl": "http://localhost:3900/notifications"
+		},
+		"ioOrigin": "http://localhost:3300",
+		"oauth2Proxy": "http://localhost:3300/angular-seed/oauth2-proxy",
+		"amqp": {
+			"host": "localhost",
+			"port": 5672
+		}
+	},
+	"auth": {
+		"Facebook": {
+			"callbackUrl": "http://localhost:3300/angular-seed/auth/facebook/callback",
+			"logoutRedirectUrl": "http://localhost:3300/"
+		}
+	}
+}

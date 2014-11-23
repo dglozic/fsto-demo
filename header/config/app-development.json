@@ -20,7 +20,7 @@
 				}, 	{
 					"id": "angularjs",
 					"label": "AngularJS",
-					"url":   "http://fsto-demo.mybluemix.net/angularjs"
+					"url":   "http://fsto-demo.mybluemix.net/angular-seed/"
 				}, 	{
 					"id": "about",
 					"label": "About",

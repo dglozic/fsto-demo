@@ -25,7 +25,7 @@
 				}, 	{
 					"id": "angularjs",
 					"label": "AngularJS",
-					"url":   "http://localhost:3000/angularjs"
+					"url":   "http://localhost:3300/angular-seed/"
 				}, 	{
 					"id": "about",
 					"label": "About",

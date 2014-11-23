@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{title}</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/angular-seed/bower_components/html5-boilerplate/css/normalize.css">
+  <link rel="stylesheet" href="/angular-seed/bower_components/html5-boilerplate/css/main.css">
+  <link rel="stylesheet" href="/angular-seed/app.css">
+	<!--  Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{headerUrl}/css/header.css">
+  <script src="/angular-seed/bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+   {header|s}
+   <div class="mainContent">
+<!-- 
+  <ul class="menu">
+    <li><a href="/angular-seed/view1">view1</a></li>
+    <li><a href="/angular-seed/view2">view2</a></li>
+  </ul>
+-->
+
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation"{@eq key=selection value="view1"} class="active"{/eq}><a href="/angular-seed/view1" aria-controls="view1" role="tab" data-toggle="tab">View1</a></li>
+    <li role="presentation"{@eq key=selection value="view2"} class="active"{/eq}><a href="/angular-seed/view2" aria-controls="view2" role="tab" data-toggle="tab">View2</a></li>    
+  </ul>
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <div class="angular-content" ng-view></div>
+
+  <div>Angular seed app: v<span app-version></span></div>
+  </div>
+  
+   <!--  jQuery -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+   <!-- Bootstrap JS -->   
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+   <script src="http://cdn.jsdelivr.net/dustjs/2.4.0/dust-core.js"></script>   
+   <script src="{headerUrl}/js/header.js"></script>
+   <script src="{headerUrl}/js/notifications.js"></script>   
+   <script src="{ioOrigin}/socket.io/socket.io.js"></script>  
+
+  <script src="/angular-seed/bower_components/angular/angular.min.js"></script>
+  <script src="/angular-seed/bower_components/angular-route/angular-route.js"></script>
+  <script src="/angular-seed/app.js"></script>
+  <script src="/angular-seed/view1/view1.js"></script>
+  <script src="/angular-seed/view2/view2.js"></script>
+  <script src="/angular-seed/components/version/version.js"></script>
+  <script src="/angular-seed/components/version/version-directive.js"></script>
+  <script src="/angular-seed/components/version/interpolate-filter.js"></script>
+   <script>
+   var origin = "{ioOrigin}";
+   {! This is messy, breaks encapsulation - should be untangled in a real system !}
+   initHeaderWebSockets(io, origin, "{notificationUrl}", "{oauth2Proxy}"); 
+   
+   $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+	   e.preventDefault();
+	   $(e.target).parent().addClass("active");
+	   $(e.relatedTarget).parent().removeClass("active");
+	 });
+   </script>
+</body>
+</html>
