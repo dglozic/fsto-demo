@@ -15,8 +15,8 @@
    {header|s}
    <div class="mainContent">
       <h1>Welcome to FSTO Demo</h1>
-      <p>This page is the public landing page of the FSTO demo. Some pages require authentication
-      using your Facebook account.</p>
+      <p>This page is the public landing page of the FSTO demo.</p>
+      <p>Some pages require authentication using your Facebook account.</p>
    </div>
    <!--  jQuery -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
