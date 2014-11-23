@@ -17,6 +17,9 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
 	    when(
 	      '/angular-seed/view2', {
   	        	templateUrl: 'view2/view2.html'
-        }).	        
-        otherwise({redirectTo: '/angular-seed/view1'});
+        }).	
+        when(
+          '/angular-seed/', {
+                redirectTo: '/angular-seed/view1'
+        });
 }]);
