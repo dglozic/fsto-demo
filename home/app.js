@@ -5,8 +5,7 @@
 var express = require('express')
   , routes = require('./routes')
   , auth_proxy = require('./lib/auth_proxy')
-  , about = require('./routes/about') 
-  , angularjs = require('./routes/angularjs')   
+  , about = require('./routes/about')   
   , dust = require('dustjs-linkedin')
   , helpers = require('dustjs-helpers')
   , cons = require('consolidate')
@@ -131,7 +130,6 @@ var express = require('express')
 	// Routes
 	app.get('/', routes.index);
 	app.get('/about', about.about);
-	app.get('/angularjs', angularjs.angularjs);	
 	
 	// OAuth2 proxy route for the header to use, so that it can make per-user calls
 	app.all('/oauth2-proxy', auth_proxy.all);
