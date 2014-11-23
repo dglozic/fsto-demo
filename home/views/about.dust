@@ -26,7 +26,8 @@
       <li>Isomorphic app approach (partials rendered both on the server and the client)</li>
       <li>Integration if a two-page AngularJS app with HTML5 routing.</li>
       </ol>
-      <p>For more detail, visit <a href="http://dejanglozic.com">dejanglozic.com</a>.</p>
+      <p>Source code for this demo can be found on GitHub at <a href="https://github.com/dglozic/fsto-demo">https://github.com/dglozic/fsto-demo</a>.
+      <p>For more like this, visit my blog at <a href="http://dejanglozic.com">dejanglozic.com</a>.</p>
    </div>
    <!--  jQuery -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

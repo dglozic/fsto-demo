@@ -140,9 +140,9 @@ var express = require('express')
 	app.all('/angular-seed/oauth2-proxy', auth_proxy.all);
 	
 	// Routes
-	app.get('/angular-seed/', angular_seed.get);		
-	app.get('/angular-seed/view1', angular_seed.get);
-	app.get('/angular-seed/view2', angular_seed.get);	
+	app.get('/angular-seed/*', angular_seed.get);		
+	//app.get('/angular-seed/view1', angular_seed.get);
+	//app.get('/angular-seed/view2', angular_seed.get);	
 
 	// Auth routes
 	app.get('/angular-seed/auth/facebook', passport.authenticate('facebook', { faulureRedirect: '/', scope: ['public_profile', 'email'] }));
