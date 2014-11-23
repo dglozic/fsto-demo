@@ -24,7 +24,7 @@
       <li>UI Composition</li>
       <li>Federated authentication using Redis Session Store</li>
       <li>Isomorphic app approach (partials rendered both on the server and the client)</li>
-      <li>Integration if a two-page AngularJS app with HTML5 routing</li>
+      <li>Integration a two-page AngularJS app with HTML5 routing (no hashes in URLs)</li>
       </ol>
       <p>Source code for this demo can be found on GitHub at <a href="https://github.com/dglozic/fsto-demo">https://github.com/dglozic/fsto-demo</a>.
       <p>For more like this, visit my blog at <a href="http://dejanglozic.com">dejanglozic.com</a>.</p>
