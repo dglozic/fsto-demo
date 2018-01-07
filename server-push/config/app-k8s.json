@@ -1,0 +1,22 @@
+{
+	"config": {
+		"amqp": {
+			"url": "amqps://admin:OPYEUVPAXXWRQHKE@portal-ssl737-15.bmix-dal-yp-066c3adb-a51f-4d0e-838e-e32642a4e85d.chiusm-us-ibm-com.composedb.com:31516/bmix-dal-yp-066c3adb-a51f-4d0e-838e-e32642a4e85d"
+		},
+		"redis": {
+			"url": "redis://admin:ILSNNSAXXBBQHRLR@sl-us-south-1-portal.16.dblayer.com:31487"
+		},
+		"header": {
+			"url": "https://fsto-demo.us-south.containers.mybluemix.net/header",
+			"notificationUrl": "https://fsto-demo.us-south.containers.mybluemix.net/header/notifications"					
+		},
+		"ioOrigin": "https://fsto-demo.us-south.containers.mybluemix.net",
+		"oauth2Proxy": "https://fsto-demo.us-south.containers.mybluemix.net/server-push/oauth2-proxy"		
+	},
+	"auth": {
+		"Facebook": {
+			"callbackUrl": "https://fsto-demo.us-south.containers.mybluemix.net/server-push/auth/facebook/callback",
+			"logoutRedirectUrl": "https://fsto-demo.us-south.containers.mybluemix.net"
+		}
+	}
+}

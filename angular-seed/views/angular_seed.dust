@@ -46,7 +46,7 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
    <!-- Bootstrap JS -->   
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-   <script src="http://cdn.jsdelivr.net/dustjs/2.4.0/dust-core.js"></script>   
+   <script src="https://cdn.jsdelivr.net/dustjs/2.4.0/dust-core.js"></script>   
    <script src="{headerUrl}/js/header.js"></script>
    <script src="{headerUrl}/js/notifications.js"></script>   
    <script src="{ioOrigin}/socket.io/socket.io.js"></script>  
@@ -62,7 +62,9 @@
    <script>
    var origin = "{ioOrigin}";
    {! This is messy, breaks encapsulation - should be untangled in a real system !}
-   initHeaderWebSockets(io, origin, "{notificationUrl}", "{oauth2Proxy}"); 
+   if (typeof io === "object") {
+    initHeaderWebSockets(io, origin, "{notificationUrl}", "{oauth2Proxy}");
+   }
    
    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
 	   e.preventDefault();

@@ -1,5 +1,15 @@
 {
 	"config": {
+		"amqp": {
+			"url": "amqps://admin:OPYEUVPAXXWRQHKE@portal-ssl737-15.bmix-dal-yp-066c3adb-a51f-4d0e-838e-e32642a4e85d.chiusm-us-ibm-com.composedb.com:31516/bmix-dal-yp-066c3adb-a51f-4d0e-838e-e32642a4e85d",
+			"ssl": {
+				"enabled": true,
+				"rejectUnauthorized": false
+			}
+		},
+		"redis": {
+			"url": "redis://admin:ILSNNSAXXBBQHRLR@sl-us-south-1-portal.16.dblayer.com:31487"
+		},
 		"header": {
 			"homeUrl": "http://fsto-demo.mybluemix.net", 
 			"loginUrl": "http://fsto-demo.mybluemix.net/auth/facebook",

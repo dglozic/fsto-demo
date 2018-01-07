@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: home-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: home
+    spec:
+      containers:
+      - name: home
+        image: registry.ng.bluemix.net/fsto_demo/home
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80

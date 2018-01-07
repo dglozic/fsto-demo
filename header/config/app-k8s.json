@@ -1,0 +1,42 @@
+{
+	"config": {
+		"amqp": {
+			"url": "amqps://admin:OPYEUVPAXXWRQHKE@portal-ssl737-15.bmix-dal-yp-066c3adb-a51f-4d0e-838e-e32642a4e85d.chiusm-us-ibm-com.composedb.com:31516/bmix-dal-yp-066c3adb-a51f-4d0e-838e-e32642a4e85d",
+			"ssl": {
+				"enabled": true,
+				"rejectUnauthorized": false
+			}
+		},
+		"redis": {
+			"url": "redis://admin:ILSNNSAXXBBQHRLR@sl-us-south-1-portal.16.dblayer.com:31487"
+		},
+		"header": {
+			"homeUrl": "https://fsto-demo.us-south.containers.mybluemix.net", 
+			"loginUrl": "https://fsto-demo.us-south.containers.mybluemix.net/auth/facebook",
+			"logoutUrl": "https://fsto-demo.us-south.containers.mybluemix.net/logout",
+			"sections": [
+				{
+					"id": "home",
+					"label": "Home",
+					"url":   "https://fsto-demo.us-south.containers.mybluemix.net"
+				},	{ 	
+					"id": "isomorphic",
+					"label": "Isomorphic",
+					"url":   "https://fsto-demo.us-south.containers.mybluemix.net/isomorphic"
+				}, 	{
+					"id": "server-push",
+					"label": "Server Push",
+					"url":   "https://fsto-demo.us-south.containers.mybluemix.net/server-push"
+				}, 	{
+					"id": "angularjs",
+					"label": "AngularJS",
+					"url":   "https://fsto-demo.us-south.containers.mybluemix.net/angular-seed"
+				}, 	{
+					"id": "about",
+					"label": "About",
+					"url":   "https://fsto-demo.us-south.containers.mybluemix.net/about"
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: server-push-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: server-push
+    spec:
+      containers:
+      - name: server-push
+        image: registry.ng.bluemix.net/fsto_demo/server-push
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80

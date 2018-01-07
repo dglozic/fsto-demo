@@ -1,0 +1,55 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: fsto-ingress
+  annotations:
+    ingress.bluemix.net/rewrite-path: |
+      serviceName=header rewrite=/;
+spec:
+  tls:
+  - hosts:
+    - fsto-demo.us-south.containers.mybluemix.net
+    secretName: fsto-demo
+  rules:
+  - host: fsto-demo.us-south.containers.mybluemix.net
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: home
+          servicePort: 80
+      - path: /header
+        backend:
+          serviceName: header
+          servicePort: 80
+      - path: /isomorphic
+        backend:
+          serviceName: isomorphic
+          servicePort: 80
+      - path: /angular-seed
+        backend:
+          serviceName: angular-seed
+          servicePort: 80
+      - path: /server-push
+        backend:
+          serviceName: server-push
+          servicePort: 80
+
+#  Server push mapped to FSTO Server Push micro-service
+#    location /server-push {
+#       proxy_pass http://fsto-server-push.mybluemix.net/server-push;
+#    }
+# Isomorphic mapped to FSTO Isomorphic micro-service
+#    location /isomorphic {
+#       proxy_pass http://fsto-isomorphic.mybluemix.net/isomorphic;
+#    }
+# Angular Seed mapped to FSTO Angular Seed micro-service
+#    location /angular-seed {
+#       proxy_pass http://fsto-angular-seed.mybluemix.net/angular-seed;
+#    }    
+# Header
+#    location /header {
+#       proxy_pass http://fsto-header.mybluemix.net;
+#    }
+#  }
+#}

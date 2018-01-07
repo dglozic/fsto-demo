@@ -22,13 +22,18 @@ var express = require('express')
 
 	var app = express();
 	var env = app.get('env');
+	var k8s = process.env.K8S === "true";
 	
 /**
  * Load hierarchical config
  */
 	nconf.env().argv();
-	if (env)
+	if (k8s) {
+		console.log("Loading K8S config");
+		nconf.file(env, './config/app-k8s.json');
+	} else if (env) {
 		nconf.file(env, './config/app-'+env+'.json');
+	}
 	nconf.file('./config/app.json');
 	
 /**
@@ -47,12 +52,6 @@ var express = require('express')
 	app.use(bodyParser.urlencoded({ extended: true }));
 	app.use(multer());
 	app.use(express.static(path.join(__dirname, 'public')));
-	//app.use(session({ key: sessionConfig.key, store: new RedisStore(ropts), 
-	//				secret: sessionConfig.secret, saveUninitialized: true, resave: true}));
-	/*
-	app.use(passport.initialize());
-	app.use(passport.session());
-	*/
 	
     // development only
 	if ('development' == env) {
@@ -74,14 +73,22 @@ var express = require('express')
 	
 	//Connect to the AMQP broker
 	var mq;
-	if (process.env.VCAP_SERVICES) {
-	    var env = JSON.parse(process.env.VCAP_SERVICES);
-	    var credentials = env['rabbitmq-2.8'][0].credentials;
-	    mq = amqp.createConnection({ url: credentials.url });	    
+
+	var amqpConfig = nconf.get('config').amqp;
+   	if (amqpConfig) {
+   		if (amqpConfig.url) {
+	   	   mq = amqp.createConnection({ 
+		   	    url: amqpConfig.url,
+		   	    ssl: amqpConfig.ssl
+		   });
+		} else {
+	   	   mq = amqp.createConnection({ 
+		   	   	port: amqpConfig.port, 
+		   	   	host: amqpConfig.host
+		   });			
+		}
+   }
 	
-	} else {
-	   var amqpConfig = nconf.get('config').amqp;
-	   mq = amqp.createConnection({ port: amqpConfig.port, host: amqpConfig.host});
-	}	
-	
-	notifications.init(io, mq);
+	if (mq) {
+		notifications.init(io, mq);
+	}

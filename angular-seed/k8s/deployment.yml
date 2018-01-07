@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: angular-seed-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: angular-seed
+    spec:
+      containers:
+      - name: angular-seed
+        image: registry.ng.bluemix.net/fsto_demo/angular-seed
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80

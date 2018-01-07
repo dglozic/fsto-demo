@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: header-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: header
+    spec:
+      containers:
+      - name: header
+        image: registry.ng.bluemix.net/fsto_demo/header
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80

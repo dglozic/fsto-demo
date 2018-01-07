@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: isomorphic-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: isomorphic
+    spec:
+      containers:
+      - name: isomorphic
+        image: registry.ng.bluemix.net/fsto_demo/isomorphic
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80

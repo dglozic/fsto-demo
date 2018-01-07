@@ -1,5 +1,13 @@
 {
 	"config": {
+		"amqp": {
+			"host": "localhost",
+			"port": 5672
+		},
+		"redis": {
+			"host": "localhost",
+			"port": 6379
+		},
 		"header": {
 			"url": "http://localhost:3900",
 			 "notificationUrl": "http://localhost:3900/notifications"			

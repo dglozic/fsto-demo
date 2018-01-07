@@ -26,13 +26,17 @@ var express = require('express')
 
 	var app = express();
 	var env = app.get('env');
+	var k8s = process.env.K8S === "true";
 	
 /**
  * Load hierarchical config
  */
 	nconf.env().argv();
-	if (env)
+	if (k8s) {
+		nconf.file(env, './config/app-k8s.json');
+	} else if (env) {
 		nconf.file(env, './config/app-'+env+'.json');
+	}
 	// The config file 'auth.json' is not provided for security reasons.
 	// When you obtain your own Facebook client and secret, create it in config in the following shape:
 	//{
@@ -88,26 +92,16 @@ var express = require('express')
 	   res.end();
 	}	
 	
+	var config = nconf.get('config');
+	
 /**
  * Redis store options
  */
-	var ropts;
-
-	if (process.env.VCAP_SERVICES) {
-	    var env = JSON.parse(process.env.VCAP_SERVICES);
-	    var credentials = env['redis-2.6'][0].credentials;
-	    ropts = {
-	    	host: credentials.host,
-	    	port: credentials.port,
-	    	pass: credentials.password
-	    }
-	}
-	else {
-		ropts = {
-			host: "localhost",
-			port: 6379
-		}
-	}
+	var ropts = {
+		host: config.redis.host,
+		port: config.redis.port,
+		url: config.redis.url
+	};
 	
 /**
  * Setting up express
@@ -171,29 +165,36 @@ var express = require('express')
 	
 	//Connect to the AMQP broker
 	var mq;
-	if (process.env.VCAP_SERVICES) {
-	    var env = JSON.parse(process.env.VCAP_SERVICES);
-	    var credentials = env['rabbitmq-2.8'][0].credentials;
-	    mq = amqp.createConnection({ url: credentials.url });
-	
-	} else {
-	   var amqpConfig = nconf.get('config').amqp;
-	   mq = amqp.createConnection({ port: amqpConfig.port, host: amqpConfig.host});
-	}	
+	var amqpConfig = nconf.get('config').amqp;
+   	if (amqpConfig) {
+   		if (amqpConfig.url) {
+	   	   mq = amqp.createConnection({ 
+		   	    url: amqpConfig.url,
+		   	    ssl: amqpConfig.ssl
+		   });
+		} else {
+	   	   mq = amqp.createConnection({ 
+		   	   	port: amqpConfig.port, 
+		   	   	host: amqpConfig.host
+		   });			
+		}
+   }
 
 	todos.mq = mq;
-	
-	mq.on('ready', function() {
-		var exchange = mq.exchange('todos');
-		todos.exchange = exchange; 
-		mq.queue('isomorphic', function (q) {
-			q.bind(exchange, '#');
-			q.subscribe(function (message) {
-				io.sockets.emit('todos', JSON.parse(message.data));				
+
+	if (mq) {
+		mq.on('ready', function() {
+			var exchange = mq.exchange('todos');
+			todos.exchange = exchange; 
+			mq.queue('isomorphic', function (q) {
+				q.bind(exchange, '#');
+				q.subscribe(function (message) {
+					io.sockets.emit('todos', JSON.parse(message.data));				
+				});
 			});
 		});
-	});
-	mq.on('error', function(err) {
-	    console.log("MQ error from isomorphic: "+err);
-	});
+		mq.on('error', function(err) {
+		    console.log("MQ error from isomorphic: "+err);
+		});
+	}
 	

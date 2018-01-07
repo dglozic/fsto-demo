@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-push
+  labels:
+    app: server-push
+spec:
+  type: ClusterIP
+  selector:
+    app: server-push
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  sessionAffinity: ClientIP
