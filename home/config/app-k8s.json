@@ -10,7 +10,7 @@
 			"url": "https://fsto-demo.us-south.containers.mybluemix.net/header",
 		    "notificationUrl": "https://fsto-demo.us-south.containers.mybluemix.net/header/notifications"				
 		},
-		"ioOrigin": "https://fsto-demo.us-south.containers.mybluemix.net",
+		"ioOrigin": "https://fsto-demo.us-south.containers.mybluemix.net/header",
 		"oauth2Proxy": "https://fsto-demo.us-south.containers.mybluemix.net/oauth2-proxy"			
 	},
 	"auth": {
